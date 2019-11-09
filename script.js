@@ -1,4 +1,5 @@
 $("#currentDay").text(moment().format("dddd , MMM Do YYYY"));
+console.log(moment().format('H'));
 
 for(var i=0;i<9;i++){
     var row = $("<div>");
@@ -34,6 +35,12 @@ $(".row").each(function(i){
     
 });
 
+$(".saveBtn").each(function(){
+    var i = $('<i class="material-icons">alarm</i>');
+    $(this).append(i);
+
+})
+
 $(".saveBtn").on("click", function(){
     //$(this).parent(".row")
     console.log($(this).parent().children(".description"));
@@ -52,7 +59,28 @@ $("textarea").each(function(){
 
 
 
-
+setInterval(() => {
+    $(".time-block").each(function(){
+        var currenttime = moment().format('H');
+        console.log(parseInt($(this).text()));
+        var i = parseInt($(this).text());
+        if(i<6){
+            i=i+12;
+        }
+        if(currenttime>i){
+            var n =$(this).parent().children(".description");
+            n.attr("class","description past");
+        }
+        else if (currenttime===i){
+            var n =$(this).parent().children(".description");
+            n.attr("class","description present");
+        }
+        else{
+            var n =$(this).parent().children(".description");
+            n.attr("class","description future");
+        }    
+    })
+}, 100);
 
 
 
