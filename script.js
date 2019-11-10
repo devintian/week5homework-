@@ -61,12 +61,15 @@ $("textarea").each(function(){
 
 setInterval(() => {
     $(".time-block").each(function(){
-        var currenttime = moment().format('H');
-        console.log(parseInt($(this).text()));
+        var currenttime = parseInt(moment().format('H'));
+        //console.log(parseInt($(this).text()));
         var i = parseInt($(this).text());
+        //console.log(i);
+        //console.log(currenttime);
         if(i<6){
             i=i+12;
         }
+
         if(currenttime>i){
             var n =$(this).parent().children(".description");
             n.attr("class","description past");
@@ -84,5 +87,4 @@ setInterval(() => {
 
 
 
-
-
+   
